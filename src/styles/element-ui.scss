@@ -4,6 +4,12 @@
   color: #fff;
   background-color: #2E4AA0;
 }
+.el-select-dropdown__item.selected {
+  color: $mainColor;
+}
+.el-pagination.is-background .el-pager li:not(.disabled).active{
+  background-color: $mainColor;
+}
 
  .el-breadcrumb__inner, .el-breadcrumb__inner a{
   font-weight: 400!important;

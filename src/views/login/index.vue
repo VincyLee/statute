@@ -2,7 +2,7 @@
  * @Author: lk 
  * @Date: 2018-08-11 11:43:38
  * @Last Modified by: lk
- * @Last Modified time: 2019-12-23 10:51:06
+ * @Last Modified time: 2019-12-24 18:28:19
  * @Description:  登录页面
  */
 <template>
@@ -133,7 +133,7 @@ export default {
           // 加密：要测试的明文数据
           encrypt(this.loginForm.password).then(password => {
             const username = this.loginForm.username.trim()
-            baseRequest('/login/aiLogin', { loginName: username, loginPasswd: password, captcha: this.loginForm.captcha, verifyRandom: this.verifyRandom }).then(response => {
+            baseRequest('/login/cmprsLogin', { loginName: username, loginPasswd: password, captcha: this.loginForm.captcha, verifyRandom: this.verifyRandom }).then(response => {
               if (response.code === 2) {
                 const validateMsg = response.data.validateMsg
                 if (validateMsg.hasOwnProperty('loginName')) {

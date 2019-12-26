@@ -1,31 +1,19 @@
 <template>
-    <div class="bottom-bar" :style="{backgroundColor:bgColor}">
-        锐银天成EAST系统 fascte@fascte.com
+    <div class="bottom-bar" >
+        军民融合政策法规智能分析系统
     </div>
 </template>
-<script>
-import { mapGetters } from 'vuex'
-export default {
-  computed: {
-    ...mapGetters([
-      'bgColor'
-    ])
-  }
-}
-</script>
 <style scoped>
     .bottom-bar{
-        height: 30px;
+        height: 55px; 
         width: 100%;
-        position: fixed;
-        bottom: 0;
-        left: 0;
         z-index: 1002;
         border-top: 1px solid #47525a;
-        line-height: 30px;
+        line-height: 55px;
         text-align: center;
         color: #fff;
         font-size: 12px;
+        background-color: #565757;
     }
 </style>
 

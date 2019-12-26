@@ -1,20 +1,22 @@
 <template>
   <div class="app-wrapper" >
     <navbar></navbar>
-    <div class="main-container">
-      <app-main ></app-main>
+    <div class="main-container" :style="{height:height+'px'}">
+      <app-main ref="appMain" :style="{minHeight:(height - 55)+'px'}">></app-main>
+      <bottom-bar></bottom-bar>
     </div>
   </div>
 </template>
 
 <script>
-import { Navbar, AppMain } from './components'
+import { Navbar, AppMain, BottomBar } from './components'
 
 export default {
   name: 'layout',
   components: {
     Navbar,
-    AppMain
+    AppMain,
+    BottomBar
   },
   computed: {
   },
@@ -32,17 +34,18 @@ export default {
   },
   methods: {
     setCurrentHeight() {
-      const height = document.body.offsetHeight - 96
-      const dialogHeight = document.body.offsetHeight * 0.75
-      const appWidth = document.body.offsetWidth - 210
-      this.height = height + 'px'
-      this.$store.dispatch('setContainHeight', { height, dialogHeight, appWidth })
+      this.height = document.body.offsetHeight - 60
     }
   }
 }
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+  .main-container{
+    overflow: auto;
+    overflow-x: hidden;
+    width: 100%;
+  }
   .app-wrapper {
    // @include clearfix;
     position: relative;

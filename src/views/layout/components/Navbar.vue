@@ -2,7 +2,7 @@
  * @Author: lk 
  * @Date: 2018-09-21 14:54:24 
  * @Last Modified by: lk
- * @Last Modified time: 2019-12-23 15:48:59
+ * @Last Modified time: 2019-12-25 03:03:27
  * @Description:  
  */
 <template>
@@ -26,6 +26,12 @@
         </li>
       </ul>
       <ul class="right-menu clearfix">
+          <li class="right-menu-item" v-if="$route.name!=='home'">
+            <div class="search-input">
+              <i class="search-icon" :style="{backgroundImage:'url('+cutter+')'}" @click="searchHandle"></i>
+              <input type="text" v-model.trim="searchVal">
+            </div>
+          </li>
           <li class="right-menu-item">
             <span class="log-out"> 
               <i class="log-user" :style="{backgroundImage:'url('+cutter+')'}"></i>
@@ -42,14 +48,26 @@ import cutter from '@/assets/images/cutter.png'
 export default {
   data() {
     return {
-      cutter
+      cutter,
+      searchVal: ''
     }
-  },
-  computed: {
   },
   components: {
   },
   methods: {
+    searchHandle() {
+      if (this.$route.name === 'search') {
+        this.$parent.$refs.appMain.$children[0].$refs.resultSearch.dataValue = this.searchVal
+        this.$parent.$refs.appMain.$children[0].seacrHandle()
+      } else {
+        this.$router.push({
+          path: '/search',
+          query: {
+            val: this.searchVal
+          }
+        })
+      }
+    },
     logout() {
       this.$confirm('确定注销当前登录吗?', '提示', {
         confirmButtonText: '确定',
@@ -101,6 +119,40 @@ export default {
     float: right;
     .right-menu-item{
       float: left;
+      .search-input{
+        width: 270px;
+        height: 28px;
+        position: relative;
+        margin-right: 70px;
+        margin-top: 15px;
+        border-radius: 20px;
+        overflow: hidden;
+        background-color: $mainColor;
+        border:1px solid #fff;
+        .search-icon{
+          position: absolute;
+          top: 0px;
+          right: 5px;
+          width: 26px;
+          height: 26px;
+          background-position: 55px 112px;
+          cursor: pointer;
+        }
+        input{
+          position:absolute;
+          height:100%;
+          width: calc(100% - 30px);
+          top:0;
+          left:0;
+          background-color: transparent;
+          margin: 0;
+          padding: 5px 0px 5px 10px;
+          outline: none;
+          border: none;
+          font-size: 12px;
+          color:#fff;
+        }
+      }
       .log-out{
         font-size: 14px;
         color:#fff;

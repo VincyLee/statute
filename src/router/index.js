@@ -2,7 +2,7 @@
  * @Author: lk
  * @Date: 2019-02-01 17:36:33
  * @Last Modified by: lk
- * @Last Modified time: 2019-12-23 12:06:44
+ * @Last Modified time: 2019-12-25 03:12:03
  */
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -74,6 +74,28 @@ export const constantRouterMap = [
         name: 'learn',
         path: '/learn',
         component: _import('learn/index')
+      }
+    ]
+  },
+  {
+    path: '',
+    component: Layout,
+    children: [
+      {
+        name: 'search',
+        path: '/search',
+        component: _import('searchResult/index')
+      }
+    ]
+  },
+  {
+    path: '',
+    component: Layout,
+    children: [
+      {
+        name: 'policy',
+        path: '/policy',
+        component: _import('policy/index')
       }
     ]
   }
